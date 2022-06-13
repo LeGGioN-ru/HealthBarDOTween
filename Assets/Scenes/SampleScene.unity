@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46081003650d6f438d4e0ddbf9dbd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthChangeEvent:
+  _healthChange:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1987332446}

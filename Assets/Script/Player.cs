@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     public float TargetHealth { get; private set; }
 
-    [SerializeField] private UnityEvent _healthChangeEvent;
+    [SerializeField] private UnityEvent _healthChange;
 
     private float _addRemoveHealth = 10;
 
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         if (TargetHealth + _addRemoveHealth <= maxHealth)
         {
             TargetHealth += _addRemoveHealth;
-            _healthChangeEvent.Invoke();
+            _healthChange.Invoke();
         }
     }
 
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         if (TargetHealth - _addRemoveHealth >= minHealth)
         {
             TargetHealth -= _addRemoveHealth;
-            _healthChangeEvent.Invoke();
+            _healthChange.Invoke();
         }
     }
 }
