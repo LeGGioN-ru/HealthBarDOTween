@@ -4,30 +4,19 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private HealthBarView _healthBarView;
+    [SerializeField] private Slider _healthBar;
+    [SerializeField] private float _changeDelay;
 
-    private float _addRemoveHealth = 10;
-    private float _targetHealth;
+    private Tweener _tweener;
 
-    public void AddHealth()
+    private void Start()
     {
-        int maxHealth = 100;
-
-        if (_targetHealth + _addRemoveHealth <= maxHealth)
-        {
-            _targetHealth += _addRemoveHealth;
-            _healthBarView.ChangeHealth(_targetHealth);
-        }
+        int defaultHealthValue = 0;
+        _tweener = _healthBar.DOValue(defaultHealthValue, _changeDelay).SetAutoKill(false);
     }
 
-    public void RemoveHealth()
+    public void ChangeHealth(float targetHealth)
     {
-        int minHealth = 0;
-
-        if (_targetHealth - _addRemoveHealth >= minHealth)
-        {
-            _targetHealth -= _addRemoveHealth;
-            _healthBarView.ChangeHealth(_targetHealth);
-        }
+        _tweener.ChangeEndValue(targetHealth, true).Restart();
     }
 }
