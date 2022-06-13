@@ -14,7 +14,9 @@ public class HealthBar : MonoBehaviour
 
     public void AddHealth()
     {
-        if (_targetHealth + _addRemoveHealth <= 100)
+        int maxHealth = 100;
+
+        if (_targetHealth + _addRemoveHealth <= maxHealth)
         {
             _targetHealth += _addRemoveHealth;
             _tweener.ChangeEndValue(_targetHealth, true).Restart();
@@ -23,7 +25,9 @@ public class HealthBar : MonoBehaviour
 
     public void RemoveHealth()
     {
-        if (_targetHealth - _addRemoveHealth >= 0)
+        int minHealth = 0;
+
+        if (_targetHealth - _addRemoveHealth >= minHealth)
         {
             _targetHealth -= _addRemoveHealth;
             _tweener.ChangeEndValue(_targetHealth, true).Restart();
