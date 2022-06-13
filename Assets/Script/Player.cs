@@ -1,22 +1,22 @@
-using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private HealthBar _healthBar;
+    public float TargetHealth { get; private set; }
+
+    [SerializeField] private UnityEvent _healthChangeEvent;
 
     private float _addRemoveHealth = 10;
-    private float _targetHealth;
 
     public void AddHealth()
     {
         int maxHealth = 100;
 
-        if (_targetHealth + _addRemoveHealth <= maxHealth)
+        if (TargetHealth + _addRemoveHealth <= maxHealth)
         {
-            _targetHealth += _addRemoveHealth;
-            _healthBar.ChangeHealth(_targetHealth);
+            TargetHealth += _addRemoveHealth;
+            _healthChangeEvent.Invoke();
         }
     }
 
@@ -24,10 +24,10 @@ public class Player : MonoBehaviour
     {
         int minHealth = 0;
 
-        if (_targetHealth - _addRemoveHealth >= minHealth)
+        if (TargetHealth - _addRemoveHealth >= minHealth)
         {
-            _targetHealth -= _addRemoveHealth;
-            _healthBar.ChangeHealth(_targetHealth);
+            TargetHealth -= _addRemoveHealth;
+            _healthChangeEvent.Invoke();
         }
     }
 }

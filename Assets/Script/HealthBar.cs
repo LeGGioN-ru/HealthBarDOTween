@@ -6,6 +6,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider _healthBar;
     [SerializeField] private float _changeDelay;
+    [SerializeField] private Player _player;
 
     private Tweener _tweener;
 
@@ -15,8 +16,8 @@ public class HealthBar : MonoBehaviour
         _tweener = _healthBar.DOValue(defaultHealthValue, _changeDelay).SetAutoKill(false);
     }
 
-    public void ChangeHealth(float targetHealth)
+    public void ChangeHealth()
     {
-        _tweener.ChangeEndValue(targetHealth, true).Restart();
+        _tweener.ChangeEndValue(_player.TargetHealth, true).Restart();
     }
 }
